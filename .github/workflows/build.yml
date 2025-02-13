@@ -33,9 +33,18 @@ jobs:
       #     REPOSITORY_PATH: 'build'
       #     SERVER_PATH: '/var/www/build'
 
-      - name: Release via rsync
+      - name: setup
         uses: shimataro/ssh-key-action@v2
         with:
           key: ${{ secrets.PRIVATE_SSH_KEY }}
           known_hosts: '${{ secrets.HOST }}'
-        run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts && rsync -avz ./build/ ${{ secrets.USER }}@${{ secrets.HOST }}:/home/tt/test -p ${{ secrets.PORT }}
+          name: id_rsa-server
+          config: |
+            Host server
+              HostName yyy.yyy.yyy.yyy
+              User ${{ secrets.USER }}
+              IdentityFile ~/.ssh/id_rsa-server
+              Port ${{ secrets.PORT }}
+
+      - name: rsync
+        run: ssh-keyscan -H ${{ secrets.HOST }} >> ~/.ssh/known_hosts && rsync -avz ./build/ server:/home/tt/test -p ${{ secrets.PORT }}
