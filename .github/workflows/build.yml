@@ -27,7 +27,7 @@ jobs:
         uses: D3rHase/rsync-deploy-action@latest
         with:
           HOST: vpn.visacheckk.com
-          PORT: 2212
+          PORT: "2212"
           USER: tt
           PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
           REPOSITORY_PATH: 'build'
