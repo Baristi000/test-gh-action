@@ -48,4 +48,5 @@ jobs:
 
       - name: rsync
         run: |
+          ssh-keyscan -H ${{ secrets.HOST }}:${{ secrets.PORT }} >> ~/.ssh/known_hosts &&\
           rsync -avz ./build/ server:/home/tt/test -p ${{ secrets.PORT }}
