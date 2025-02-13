@@ -26,9 +26,9 @@ jobs:
       - name: Release via rsync
         uses: D3rHase/rsync-deploy-action@latest
         with:
-          INPUT_HOST: ${{ secrets.HOST }}
-          INPUT_PORT: ${{ secrets.PORT }}
-          INPUT_USER: ${{ secrets.USER }}
-          INPUT_PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
+          HOST: ${{ secrets.HOST }}
+          PORT: ${{ secrets.PORT }}
+          USER: ${{ secrets.USER }}
+          PRIVATE_SSH_KEY: ${{ secrets.PRIVATE_SSH_KEY }}
           REPOSITORY_PATH: 'build'
-          SERVER_PATH: '/home/tt/test'
+          SERVER_PATH: '/var/www/build'
